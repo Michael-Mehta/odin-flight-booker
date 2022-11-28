@@ -7,10 +7,10 @@
 
 <%= select_tag(:departure_airport_id, options_for_select(@airport_options, selected: params[:departure_airport_id]), {prompt: "From?"}) %>
 <%= select_tag(:arrival_airport_id, options_for_select(@airport_options, selected: params[:arrival_airport_id]), {prompt: "Destination?"}) %>
-<%= select_tag(:passengers, options_for_select([['1', 1],['2',2],['3',3],['4',4]]), {prompt: "Number of Passengers"}) %>
-<%= select_tag(:day, options_for_select(@day_options)) %>
-<%= select_tag(:month, options_for_select(@month_options)) %>
-<%= select_tag(:year, options_for_select(@year_options)) %>
+<%= select_tag(:passengers, options_for_select([['1', 1],['2',2],['3',3],['4',4]], selected: params[:passengers]), {prompt: "Number of Passengers"}) %>
+<%= select_tag(:day, options_for_select(@day_options, selected: params[:day])) %>
+<%= select_tag(:month, options_for_select(@month_options, selected: params[:month])) %>
+<%= select_tag(:year, options_for_select(@year_options, selected: params[:year])) %>
 
 <%= submit_tag("Search flights") %>
 <% end %>
@@ -18,20 +18,8 @@
 <br/>
 
 <% if @available_flights.any? %>
-<% @available_flights.each do |flight| %>
-    <% departure_airport = Airport.find(flight.departure_airport_id).code %>
-    <% arrival_airport = Airport.find(flight.arrival_airport_id).code %>
-    <% selected_date = flight.scheduled_on.strftime('%B %d %Y') %>
-    <% scheduled_time = flight.sheduled_on.strftime('%H:%M) %>
-    <% arrival_time = (flight.scheduled_on + (flight.duration/60).to_i.hours).strftime('%H:%M') %>
 
-    <li>
-
-    <%= scheduled_time %> - <%= arrival_time %> - <%= departure_airport %> to <%= arrival_airport %>
-
-    </li>
-    <% end %>
-
+<%= render "search_results_form" %>
     <% else %>
 
     <p> No flights available <p>
