@@ -1,4 +1,4 @@
-<%= form_with(url: "/flights", method: "get", local: true) %>
+<%= form_with(url: "/flights", method: "get", local: true) do %>
 <% @airport_options = Airport.all.map {|airport| [airport.code, airport.id]} %>
 <% @year_options = Flight.all.map { |flight| flight.scheduled_on.year}.uniq %>
 <% @month_options = Flight.all.map { |flight| flight.scheduled_on.month}.uniq %>
