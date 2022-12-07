@@ -14,7 +14,8 @@ include BookingsHelper
         @booking = Booking.new(booking_params)
 
         if @booking.save
-
+            
+            PassengerMailer.with(passenger: @passenger).booking_confirmation
             flash[:success] = 'Booking saved!'
             redirect_to booking_path(@booking)
         else
