@@ -220,7 +220,6 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
-  letter_opener
   letter_opener_web
   puma (~> 5.0)
   rails (~> 7.0.4)

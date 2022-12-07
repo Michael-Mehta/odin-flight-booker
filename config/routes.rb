@@ -8,6 +8,5 @@ Rails.application.routes.draw do
   resources :airports 
   resources :bookings
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.staging?
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" unless ENV["PRODUCTION_FOR_REAL"]
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
