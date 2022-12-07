@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :flights
   resources :airports 
   resources :bookings
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.staging?
 end
