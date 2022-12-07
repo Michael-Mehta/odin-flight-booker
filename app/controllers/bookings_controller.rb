@@ -32,8 +32,11 @@ include BookingsHelper
     private
 
     def mail_passengers
-        @booking.passengers.each do |passenger|
-          PassengerMailer.with(passenger:, booking: @booking).booking_confirmation
-        end
+
+    @booking.passengers.each do |passenger|
+          PassengerMailer.with(passenger:, booking: @booking).booking_confirmation.deliver_now!
+    end
+
+    end
 
 end
