@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :airports 
   resources :bookings
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  #mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

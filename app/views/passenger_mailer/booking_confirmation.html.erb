@@ -1,9 +1,9 @@
 
-<h1>Hey, <%= @passenger.name %>, you have booked a flight with us.</h1>
+<h1>Hey, <%= @booking.passengers.pluck(:name) %>, you have booked a flight with us.</h1>
 <p>
-  The flight from <%= @flight.departure_airport.city %>
-  to <%= @flight.arrival_airport.city %>
-  will take off at <%= @flight.start_datetime %>.
+  The flight from <%= @booking.flight.departure_airport.location %>
+  to <%= @booking.flight.arrival_airport.location %>
+  will take off at <%= @booking.flight.scheduled_on %>.
 </p>
 <p>
   Please be at the corresponding gate at least 30 minutes earlier.

@@ -15,11 +15,8 @@ include BookingsHelper
 
         if @booking.save
 
-            
-        @booking.passengers.each do |pax|
-            PassengerMailer.with(passenger: pax).booking_confirmation.deliver_now
-          end
-          
+            PassengerMailer.with(booking_id: @booking.id).booking_confirmation.deliver!
+
             flash[:success] = 'Booking saved!'
             redirect_to booking_path(@booking)
         else
